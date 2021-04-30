@@ -40,7 +40,6 @@ export class Home extends Component {
         );
     }
 
-
     render() {
 
         const { loadingPedidos } = this.state;
@@ -65,7 +64,6 @@ export class Home extends Component {
             threeDots: true,
             prevNext: true,
             onClick: function (page) {
-
                 self.setState({
                     loadingPedidos: true
                 });
@@ -79,7 +77,6 @@ export class Home extends Component {
                             loadingPedidos: false
                         });
                     });
-
             }
         };
 
@@ -102,8 +99,7 @@ export class Home extends Component {
                     <div className='table-responsive'>
                         <table className='table table-striped' aria-labelledby="tabelLabel">
                             <thead>
-                                <tr>
-                                    
+                                <tr>                                    
                                     <th>Identificacao</th>
                                     <th>Data de Criacao</th>
                                     <th>Data da Entrega</th>
@@ -113,13 +109,11 @@ export class Home extends Component {
                             </thead>
                             <tbody>
                                 {pedidos.map(pedido =>
-
                                     <>
                                         <tr key={pedido.id} data-toggle="collapse"
                                             data-target={".multicollapsetarget" + pedido.id}
                                             aria-controls={"multicollapsetargetcontrols" + pedido.id}
-                                        >
-                                           
+                                        >                                           
                                             <td>#{pedido.id}</td>
                                             <td>{new Date(pedido.dataDeCriacao).toLocaleDateString()}</td>
                                             <td>{new Date(pedido.dataDaEntregaRealizada).toLocaleDateString()}</td>
@@ -140,7 +134,6 @@ export class Home extends Component {
                                                     {pedido.produtos.map((produto) => (
                                                         <div key={produto.id}>
                                                             - Nome: {produto.nome},  Descricao: {produto.descricao}, Valor: <NumberFormat value={produto.valor} displayType={'text'} thousandSeparator={true} prefix={'R$'} />
-
                                                         </div>
                                                     ))}
                                                 </div>
@@ -154,9 +147,6 @@ export class Home extends Component {
                 }
             </div>
         );
-
-
-
     }
     async populateTotalDePedidos() {
         try {
@@ -167,6 +157,7 @@ export class Home extends Component {
             alert("Erro ao carregar conteudo");
         }
     }
+
     async populatepedidosPorDia() {
         try {
             const response = await fetch('ObterEntregasPorDia');
@@ -177,6 +168,7 @@ export class Home extends Component {
             alert("Erro ao carregar conteudo");
         }
     }
+
     async populatePedidos(pageNum, pageSize) {
         try {
             const response = await fetch('ObterPedidos?pageNum=' + pageNum + '&pageSize=' + pageSize);
@@ -186,7 +178,4 @@ export class Home extends Component {
             alert("Erro ao carregar conteudo");
         }
     }
-
-
-
 }
